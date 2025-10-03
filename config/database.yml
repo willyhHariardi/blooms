@@ -1,0 +1,37 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['BLOOM_DATABASE_URL'] %>
+  database: <%= ENV['BLOOM_DATABASE_PROD_HOST'] %>
+  username: <%= ENV['BLOOM_DATABASE_PROD_USERNAME'] %>
+  password: <%= ENV['BLOOM_DATABASE_PROD_PASSWORD'] %>
+  port: 21326
+
+development:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['BLOOM_DATABASE_URL'] %>
+  database: <%= ENV['BLOOM_DATABASE'] %>
+  username: <%= ENV['BLOOM_DATABASE_USERNAME'] %>
+  password: <%= ENV['BLOOM_DATABASE_PASSWORD'] %>
+  port: 21326
+
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['BLOOM_DATABASE_PROD_HOST'] %>
+  database: <%= ENV['BLOOM_DATABASE'] %>
+  username: <%= ENV['BLOOM_DATABASE_USERNAME'] %>
+  password: <%= ENV['BLOOM_DATABASE_PROD_PASSWORD'] %>
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV['BLOOM_DATABASE_URL'] %>
+  database: muscle_club_test<%= ENV['TEST_ENV_NUMBER'] %>
+  username: <%= ENV['BLOOM_DATABASE_USERNAME'] %>
+  password:
