@@ -6,7 +6,7 @@ default: &default
   database: <%= ENV['BLOOM_DATABASE_PROD_HOST'] %>
   username: <%= ENV['BLOOM_DATABASE_PROD_USERNAME'] %>
   password: <%= ENV['BLOOM_DATABASE_PROD_PASSWORD'] %>
-  port: 21326
+  port: 5432
 
 development:
   <<: *default
@@ -16,7 +16,7 @@ development:
   database: <%= ENV['BLOOM_DATABASE'] %>
   username: <%= ENV['BLOOM_DATABASE_USERNAME'] %>
   password: <%= ENV['BLOOM_DATABASE_PASSWORD'] %>
-  port: 21326
+  port: 5432
 
 production:
   <<: *default

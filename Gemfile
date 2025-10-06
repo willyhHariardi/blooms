@@ -2,8 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 
-ruby '3.4.4'
-gem 'sprockets-rails'
+ruby '3.3.6'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.1"
@@ -20,6 +19,7 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 gem 'pg'
+gem 'sprockets-rails'
 
 gem 'dotenv-rails'
 gem 'rspec-rails', '~> 3.8'
@@ -28,7 +28,6 @@ gem 'oj' # pagy helper
 gem 'pagy' # pagination
 gem 'ransack'
 gem 'jquery-ui-rails'
-gem 'bootstrap-sass', '~> 3.4.1'
 gem 'kaminari'
 
 
