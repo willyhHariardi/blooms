@@ -29,10 +29,10 @@ gem 'pagy' # pagination
 gem 'ransack'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'devise'
 
 
 gem 'database_cleaner'
-gem 'factory_bot_rails', '4.8.2'
 gem 'slim-rails'
 gem 'popper_js', '~> 1.11', '>= 1.11.1'
 gem 'devise'

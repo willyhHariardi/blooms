@@ -1,0 +1,47 @@
+= render 'shared/header'
+
+section.home-slider.owl-carousel
+  .slider-item style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5"
+    .overlay
+    .container
+      .row.slider-text.justify-content-center.align-items-center
+        .col-md-7.col-sm-12.text-center.ftco-animate
+          h1.mb-3.mt-5.bread Contact Us
+          p.breadcrumbs
+            span.mr-2
+              a href="index.html" Home
+            span Contact
+
+section.ftco-section.contact-section
+  .container.mt-5
+    .row.block-9
+      .col-md-4.contact-info.ftco-animate
+        .row
+          .col-md-12.mb-4
+            h2.h4 Contact Information
+          .col-md-12.mb-3
+            p
+              span Address:
+              |  198 West 21th Street, Suite 721 New York NY 10016
+          .col-md-12.mb-3
+            p
+              span Phone:
+              |  
+              a href="tel://1234567920" + 1235 2355 98
+          .col-md-12.mb-3
+            p
+              span Email:
+              |  
+              a href="mailto:info@yoursite.com" info@yoursite.com
+          .col-md-12.mb-3
+            p
+              span Website:
+              |  
+              a href="#" yoursite.com
+      
+      .col-md-1
+      
+      .col-md-6.ftco-animate
+        <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Reviver Physiotherapy & Sports Rehab&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div><style>.mapouter{position:relative;text-align:right;width:600px;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:600px;height:400px;}.gmap_iframe {width:600px!important;height:400px!important;}</style></div>
+
+= render 'shared/footer'

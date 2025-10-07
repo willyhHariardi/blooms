@@ -1,0 +1,79 @@
+= render 'shared/header'
+section.ftco-section.ftco-cart
+  .container
+    .row
+      .col-md-12.ftco-animate
+        .cart-list
+          table.table
+            thead.thead-primary
+              tr.text-center
+                th &nbsp;
+                th &nbsp;
+                th Product
+                th Price
+                th Quantity
+                th Total
+            tbody
+              tr.text-center
+                td.product-remove
+                  a href="#"
+                    span.icon-close
+                
+                td.image-prod
+                  .img style="background-image:url(images/menu-2.jpg);"
+                
+                td.product-name
+                  h3 Creamy Latte Coffee
+                  p Far far away, behind the word mountains, far from the countries
+                
+                td.price $4.90
+                
+                td.quantity
+                  .input-group.mb-3
+                    input.quantity.form-control.input-number type="text" name="quantity" value="1" min="1" max="100"
+                
+                td.total $4.90
+              
+              /! END TR
+              tr.text-center
+                td.product-remove
+                  a href="#"
+                    span.icon-close
+                
+                td.image-prod
+                  .img style="background-image:url(images/dish-2.jpg);"
+                
+                td.product-name
+                  h3 Grilled Ribs Beef
+                  p Far far away, behind the word mountains, far from the countries
+                
+                td.price $15.70
+                
+                td.quantity
+                  .input-group.mb-3
+                    input.quantity.form-control.input-number type="text" name="quantity" value="1" min="1" max="100"
+                
+                td.total $15.70
+              /! END TR
+    
+    .row.justify-content-end
+      .col.col-lg-12.col-md-6.mt-5.cart-wrap.ftco-animate
+        .cart-total.mb-3
+          h3 Totals
+          p.d-flex
+            span Subtotal
+            span $20.60
+          p.d-flex
+            span Delivery
+            span $0.00
+          p.d-flex
+            span Discount
+            span $3.00
+          hr
+          p.d-flex.total-price
+            span Total
+            span $17.60
+        p.text-center
+          a.btn.btn-primary.py-3.px-4 href="checkout.html" Proceed to Checkout
+
+= render 'shared/footer'

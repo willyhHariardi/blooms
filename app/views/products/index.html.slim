@@ -1,0 +1,98 @@
+= render 'shared/header'
+
+section.home-slider.owl-carousel
+  .slider-item style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5"
+    .overlay
+    .container
+      .row.slider-text.justify-content-center.align-items-center
+        .col-md-7.col-sm-12.text-center.ftco-animate
+          h1.mb-3.mt-5.bread Order Online
+          p.breadcrumbs
+            span.mr-2
+              a href="index.html" Home
+            span Shop
+
+section.ftco-menu.mb-5.pb-5
+  .container
+    .row.d-md-flex
+      .col-lg-12.ftco-animate.p-md-5
+        .row
+          .col-md-12.nav-link-wrap.mb-5
+            .nav.ftco-animate.nav-pills.justify-content-center#v-pills-tab role="tablist" aria-orientation="vertical"
+              a.nav-link.active id="v-pills-0-tab" data-toggle="pill" href="#v-pills-0" role="tab" aria-controls="v-pills-0" aria-selected="true" Coffee
+              a.nav-link id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="false" Main Dish
+              a.nav-link id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false" Drinks
+              a.nav-link id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false" Desserts
+
+          .col-md-12.d-flex.align-items-center
+            .tab-content.ftco-animate#v-pills-tabContent
+              / === Tab 0 Coffee ===
+              .tab-pane.show.active#v-pills-0 role="tabpanel" aria-labelledby="v-pills-0-tab"
+                .row
+                  - (1..4).each do |i|
+                    .col-md-3
+                      .menu-entry
+                        a.img href="#" style="background-image: url(images/menu-#{i}.jpg);"
+                        .text.text-center.pt-4
+                          h3
+                            a href="product-single.html" Coffee Capuccino
+                          p A small river named Duden flows by their place and supplies
+                          p.price
+                            span $5.90
+                          p
+                            a.btn.btn-primary.btn-outline-primary href=product_path(1)
+                              | Add to cart
+
+              / === Tab 1 Main Dish ===
+              .tab-pane.fade#v-pills-1 role="tabpanel" aria-labelledby="v-pills-1-tab"
+                .row
+                  - (1..6).each do |i|
+                    .col-md-4.text-center
+                      .menu-wrap
+                        a.menu-img.img.mb-4 href="#" style="background-image: url(images/dish-#{i}.jpg);"
+                        .text
+                          h3
+                            a href="product-single.html" Grilled Beef
+                          p Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
+                          p.price
+                            span $2.90
+                          p
+                            a.btn.btn-primary.btn-outline-primary href=product_path(1)
+                              | Add to cart
+
+              / === Tab 2 Drinks ===
+              .tab-pane.fade#v-pills-2 role="tabpanel" aria-labelledby="v-pills-2-tab"
+                .row
+                  - drinks = ["Lemonade Juice","Pineapple Juice","Soda Drinks","Lemonade Juice","Pineapple Juice","Soda Drinks"]
+                  - drinks.each_with_index do |drink, i|
+                    .col-md-4.text-center
+                      .menu-wrap
+                        a.menu-img.img.mb-4 href="#" style="background-image: url(images/drink-#{i+1}.jpg);"
+                        .text
+                          h3
+                            a href="product-single.html" = drink
+                          p Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
+                          p.price
+                            span $2.90
+                          p
+                            a.btn.btn-primary.btn-outline-primary href=product_path(1)
+                              | Add to cart
+
+              / === Tab 3 Desserts ===
+              .tab-pane.fade#v-pills-3 role="tabpanel" aria-labelledby="v-pills-3-tab"
+                .row
+                  - (1..6).each do |i|
+                    .col-md-4.text-center
+                      .menu-wrap
+                        a.menu-img.img.mb-4 href="#" style="background-image: url(images/dessert-#{i}.jpg);"
+                        .text
+                          h3
+                            a href="product-single.html" Hot Cake Honey
+                          p Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
+                          p.price
+                            span $2.90
+                          p
+                            a.btn.btn-primary.btn-outline-primary href=product_path(1)
+                              | Details
+
+= render 'shared/footer'

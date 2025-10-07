@@ -1,0 +1,77 @@
+= render 'shared/header'
+section.home-slider.owl-carousel
+  .slider-item style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5"
+    .overlay
+    .container
+      .row.slider-text.justify-content-center.align-items-center
+        .col-md-7.col-sm-12.text-center.ftco-animate
+          h1.mb-3.mt-5.bread Product Detail
+          p.breadcrumbs
+            span.mr-2
+              a href="index.html" Home
+            span Product Detail
+            
+section.ftco-section
+  .container
+    .row
+      .col-lg-6.mb-5.ftco-animate
+        a.image-popup href="/images/menu-2.jpg"
+          img.img-fluid src="/images/menu-2.jpg" alt="Colorlib Template"
+
+      .col-lg-6.product-details.pl-md-5.ftco-animate
+        h3 Creamy Latte Coffee
+        p.price
+          span $4.90
+        p A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+        p On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.
+
+        .row.mt-4
+          .col-md-6
+          .w-100
+          .input-group.col-md-6.d-flex.mb-3 
+            button.quantity-left-minus.btn.mr-2 data-field="" data-type="minus" type="button"
+              i.icon-minus
+            input#quantity.form-control.input-number type="text" name="quantity" value="1" min="1" max="100"
+            span.input-group-btn.ml-2
+              button.quantity-right-plus.btn type="button" data-type="plus" data-field=""
+                i.icon-plus
+
+        p
+          a.btn.btn-primary.py-3.px-5 href="cart.html" Add to Cart
+
+= render 'shared/footer'
+
+javascript:
+  $(document).ready(function(){
+    var quantitiy=0;
+      $('.quantity-right-plus').click(function(e){
+          
+          // Stop acting like a button
+          e.preventDefault();
+          // Get the field name
+          var quantity = parseInt($('#quantity').val());
+          
+          // If is not undefined
+              
+              $('#quantity').val(quantity + 1);
+
+            
+              // Increment
+          
+      });
+
+        $('.quantity-left-minus').click(function(e){
+          // Stop acting like a button
+          e.preventDefault();
+          // Get the field name
+          var quantity = parseInt($('#quantity').val());
+          
+          // If is not undefined
+        
+              // Increment
+              if(quantity>0){
+              $('#quantity').val(quantity - 1);
+              }
+      });
+      
+  });
