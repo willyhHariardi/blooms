@@ -1,0 +1,72 @@
+aside.sidebar#sidebar
+  // ... keep existing code (sidebar content)
+  .sidebar-content
+    / .brand
+      / .brand-icon
+      /   svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      /     path d="M3 14h18M3 14v7a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-7M3 14V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v9M8 21v-6M16 21v-6"
+      / h2.brand-name HotelDash
+    br/
+    a.nav-link.mt-10 class=("active" if current_page?(home_dashboard_path) || current_page?(root_path))  href=home_dashboard_path
+      <svg xmlns="http://www.w3.org/2000/svg" class="nav-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 14h18M3 14v7a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-7M3 14V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v9M8 21v-6M16 21v-6"/>
+      </svg>
+      span Dashboard
+    a.nav-link  href=home_dashboard_path
+      svg.nav-link-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+        circle cx="12" cy="7" r="4"
+      span Admins
+
+  / .sidebar-footer
+  /   .help-card
+  /     p Need Help?
+  /     p Contact support for assistance with your dashboard.
+  /     button.help-button Support Center
+
+javascript: 
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const userDropdownToggle = document.getElementById('userDropdownToggle');
+    const userDropdownMenu = document.getElementById('userDropdownMenu');
+
+    // Toggle sidebar
+    menuToggle.addEventListener('click', function() {
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    // Close sidebar when clicking on overlay
+    overlay.addEventListener('click', function() {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+
+    // Toggle user dropdown
+    userDropdownToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      userDropdownMenu.classList.toggle('show');
+      userDropdownToggle.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!userDropdownToggle.contains(e.target) && !userDropdownMenu.contains(e.target)) {
+        userDropdownMenu.classList.remove('show');
+        userDropdownToggle.classList.remove('active');
+      }
+    });
+
+    // Close sidebar on window resize (if in desktop mode)
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        overlay.classList.remove('active');
+      } else {
+        if (sidebar.classList.contains('active')) {
+          overlay.classList.add('active');
+        }
+      }
+    });
+  });
