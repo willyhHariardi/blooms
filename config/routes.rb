@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+      sessions: 'users/sessions',
+      registrations: 'users/registrations'
+    }
   devise_for  :admins, :path => 'admin/backyard',
         controllers: { registrations: "registrations" },
         :path_names => {
@@ -15,6 +18,9 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:new, :create, :show, :index]
   resources :products, only: [:index, :show]
+  namespace :backyard do
+    resources :category_products
+  end
   resources :about, only: [:index, :show]
   resources :checkout, only: [:index, :show]
 

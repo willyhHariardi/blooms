@@ -1,1 +1,83 @@
 = render 'shared/admin_header'
+
+main class="main-content"
+  <div class="dashboard-container">
+    <h2 class="dashboard-title">Dashboard Overview </h2>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card-content">
+          <div class="stat-info">
+            <h3>Total Orders</h3>
+            p.stat_value  style="font-size: 32px !important;"
+              | 12
+           
+          </div>
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="stat-card">
+        <div class="stat-card-content">
+          <div class="stat-info">
+            <h3>Total Users</h3>
+            p.stat_value  style="font-size: 32px !important;"
+              | 12
+
+          </div>
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 4v16M6 4v16M2 8h4M2 12h4M2 16h4M18 4v16M22 4v16M18 8h4M18 12h4M18 16h4M6 16h12v4H6zM6 8h12M6 4h12"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card stat-card-blue">
+        <div class="stat-card-content">
+          <div class="stat-info">
+            <h3>Total Income</h3>
+            p.stat_value  style="font-size: 32px !important;"
+              | 120,000
+          </div>
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    .card style="margin-top: 20px;"
+      .card-header
+        h3.card-title List Order
+        a.card-action href=""
+          | View All
+      .table-responsive
+        table.bookings-table.table-responsive-sm
+          thead
+            tr
+              th ID
+              th Email
+              th Action
+          tbody
+            tr
+              td 1
+              td.guest-name 
+                | willyhr28@gmail.com
+              td 
+                button.btn.btn-primary type="button" data-bs-dismiss="modal" style="padding:10px;"
+                  | DETAIL 
+
+
+  </div>

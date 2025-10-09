@@ -9281,3 +9281,21 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+.img-avatar,
+.img-circle {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50em;
+}
+
+.hide-on-mobile {
+  display: none;
+}
+
+
+@media (min-width: 768px) {
+  .hide-on-mobile {
+    display: block;
+  }
+}

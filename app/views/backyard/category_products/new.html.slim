@@ -1,0 +1,39 @@
+= render 'shared/admin_header'
+
+main class="main-content"
+  .dashboard-container
+    .booking-header
+      h1.booking-title Create Category
+      p.booking-subtitle Add or edit room information for your coffee
+    .booking-form#bookingForm
+      / Form Content
+      .form-content
+        .alert.alert-success#successAlert
+          | Room information has been saved successfully!
+        
+        .alert.alert-error#errorAlert
+          | Please fill in all required fields correctly.
+        = form_for @category, as: "category_product_form", url: backyard_category_products_path, method: :post do |f|
+          p.required-note Fields marked with * are required
+
+          / Basic Room Information
+          .form-section
+            h2.section-title
+              svg.section-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                path d="M2 4v16M6 4v16M2 8h4M2 12h4M2 16h4M18 4v16M22 4v16M18 8h4M18 12h4M18 16h4M6 16h12v4H6zM6 8h12M6 4h12"
+              | Basic Information
+            
+            .form-grid-2
+              .form-group
+                = f.label :title, 'Room Number', class: 'form-label'
+                = f.text_field :title, class: 'form-input', placeholder: "input title category", required: true
+                .form-help Enter the unique title
+           
+          .form-actions
+            = link_to(backyard_category_products_path, class: "btn btn-secondary") do
+              svg.btn-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                line x1="19" y1="12" x2="5" y2="12"
+                polyline points="12 19 5 12 12 5"
+              | Cancel
+            div style="display: flex; gap: 1rem;"
+            = f.submit 'Save Category', class: "btn btn-primary", id: "register_member"
