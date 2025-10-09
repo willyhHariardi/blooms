@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   devise_for  :admins, :path => 'admin/backyard',
         controllers: { registrations: "registrations" },
         :path_names => {
