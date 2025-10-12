@@ -7,15 +7,20 @@ nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light id
       | BLOOM
       small coffee &amp; Eatery
     span.icon.icon-shopping_cart.show-on-mobile
-      span.bag1.d-flex.justify-content-center.align-items-center
-        small 1
+      -if @cart_count.to_i > 0
+        span.bag1.d-flex.justify-content-center.align-items-center
+          small 
+            = @cart_count || 0
     .collapse.navbar-collapse id="ftco-nav"
       ul.navbar-nav.ml-auto
         li.nav-item
           a.nav-link.pl-5 href=products_path
-            | Product
+            | Shop
         li.nav-item
           a.nav-link.pl-5 href="about.html" About
+        li.nav-item
+            a.nav-link.pl-5 href=order_index_path 
+              | Order 
         -  if user_signed_in?
           li.nav-item.cart.hide-on-mobile
             a.nav-link href=carts_path
@@ -24,14 +29,10 @@ nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light id
                 span.bag.d-flex.justify-content-center.align-items-center
                   small 
                     = @cart_count || 0
-          li.nav-item.dropdown
-            a.pl-5#dropdown04.nav-link.dropdown-toggle href="room.html" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-              img.img-avatar alt="avatar" src="#{ image_path 'staff.svg' }" style="border-radius: 50%!important;"/
-            .dropdown-menu aria-labelledby="dropdown04"
-              a.dropdown-item href="checkout.html" Order History
-              a.dropdown-item
-                = button_to destroy_user_session_path, method: :delete, class: "dropdown-item logout", style:"padding:0px;d" do
-                  | Logout
+          li.nav-item
+            a.nav-link.pl-5 style="color: white; cursor: pointer;" id="userDropdownToggle"
+              = button_to destroy_user_session_path, method: :delete, class: "dropdown-item logout", style:"padding:0px; color: wheat;" do
+                | Logout
         - else
           li.nav-item
             a.nav-link.pl-5 href=new_user_session_path

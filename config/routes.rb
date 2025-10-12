@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :carts, only: [:new, :create, :show, :index]
+  resources :carts do
+    collection do
+      post :checkout
+    end
+  end
   resources :products, only: [:index, :show]
   namespace :backyard do
     resources :category_products
@@ -25,6 +29,7 @@ Rails.application.routes.draw do
   end
   resources :about, only: [:index, :show]
   resources :checkout, only: [:index, :show]
+  resources :order, only: [:index, :show]
 
   root :to => "landing#index"
 

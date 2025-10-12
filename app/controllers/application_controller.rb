@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def count_cart
     if user_signed_in?
-      @cart_count = current_user.carts.count
+      @cart_count = current_user.carts.draft_orders.count
     end
   end
 

@@ -1,0 +1,28 @@
+= render 'shared/header'
+
+section.ftco-section.ftco-cart
+  .container
+    .row
+      .col-md-12.ftco-animate
+        .cart-list
+          table.table
+            thead.thead-primary
+              tr.text-center
+                th Order ID
+                th Description
+                th Total Price
+                th Status
+                th 
+            tbody style="color: white;"
+              - @orders.each do |order|
+                tr.text-center
+                  td.order-id= order.id
+                  td.description= order.carts.map { |cart| "#{cart.product.title} (x#{cart.quantity})" }.join(", ")
+                  td.total-price  #{'%.d' % order.carts.sum { |cart| cart.product.price * cart.quantity }}
+                  td 
+                    = order.status
+                  td
+                    - if order.status == "pending"
+                      a.btn.btn-primary href="https://wa.me/6287876550009?text=Hi Bloom, I want ask about my order with Order ID #{order.id}."
+                        | Ask by WhatsApp
+= render 'shared/footer'
