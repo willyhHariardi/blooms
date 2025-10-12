@@ -14,47 +14,33 @@ section.ftco-section.ftco-cart
                 th Quantity
                 th Total
             tbody
-              tr.text-center
-                td.product-remove
-                  a href="#"
-                    span.icon-close
-                
-                td.image-prod
-                  .img style="background-image:url(images/menu-2.jpg);"
-                
-                td.product-name
-                  h3 Creamy Latte Coffee
-                  p Far far away, behind the word mountains, far from the countries
-                
-                td.price $4.90
-                
-                td.quantity
-                  .input-group.mb-3
-                    input.quantity.form-control.input-number type="text" name="quantity" value="1" min="1" max="100"
-                
-                td.total $4.90
-              
-              /! END TR
-              tr.text-center
-                td.product-remove
-                  a href="#"
-                    span.icon-close
-                
-                td.image-prod
-                  .img style="background-image:url(images/dish-2.jpg);"
-                
-                td.product-name
-                  h3 Grilled Ribs Beef
-                  p Far far away, behind the word mountains, far from the countries
-                
-                td.price $15.70
-                
-                td.quantity
-                  .input-group.mb-3
-                    input.quantity.form-control.input-number type="text" name="quantity" value="1" min="1" max="100"
-                
-                td.total $15.70
-              /! END TR
+              - @cart_items.each do |cart|
+                tr.text-center
+                  td.product-remove 
+                    a  onclick="setupCartRemove()"
+                      span.icon-close
+                  
+                  td.image-prod
+                    .img style="background-image: url(#{url_for(cart.product.display_image_url)});"
+                  
+                  td.product-name
+                    h3 
+                      = cart.product.title
+                  
+                  td.price 
+                    - formatted_price = number_with_precision(cart.product.price, precision: 0, delimiter: '.', separator: ',')
+                    | Rp. 
+                    = formatted_price
+                  
+                  td.quantity
+                    .input-group.mb-3
+                      input.quantity.form-control.input-number type="text" name="quantity" value="#{cart.quantity}" min="1" max="100"
+                  
+                  td.total 
+                    - total_price = cart.product.price * cart.quantity
+                    - formatted_total_price = number_with_precision(total_price, precision: 0, delimiter: '.', separator: ',')
+                    | Rp. 
+                    = formatted_total_price
     
     .row.justify-content-end
       .col.col-lg-12.col-md-6.mt-5.cart-wrap.ftco-animate
@@ -62,18 +48,113 @@ section.ftco-section.ftco-cart
           h3 Totals
           p.d-flex
             span Subtotal
-            span $20.60
-          p.d-flex
-            span Delivery
-            span $0.00
+            span 
+              - formatted_total = number_with_precision(@total_price, precision: 0, delimiter: '.', separator: ',')
+              | Rp. 
+              = formatted_total
           p.d-flex
             span Discount
-            span $3.00
+            span 0
           hr
           p.d-flex.total-price
             span Total
-            span $17.60
+            span 
+              - formatted_total = number_with_precision(@total_price, precision: 0, delimiter: '.', separator: ',')
+              | Rp. 
+              = formatted_total
         p.text-center
           a.btn.btn-primary.py-3.px-4 href="checkout.html" Proceed to Checkout
 
 = render 'shared/footer'
+
+javascript: 
+  function setupCartRemove() {
+    // Cari elemen parent terdekat yang merupakan <tr> (table row)
+    const row = event.target.closest('tr');
+    
+    if (row) {
+      // Tambahkan animasi fade out sebelum menghapus (opsional)
+      row.style.transition = 'opacity 0.3s ease';
+      row.style.opacity = '0';
+      
+      // Hapus elemen setelah animasi selesai
+      setTimeout(() => {
+        row.remove();
+      }, 300);
+    }
+  }
+   
+  // Fungsi untuk format angka ke format Rupiah
+  function formatRupiah(number) {
+    return new Intl.NumberFormat('id-ID').format(number);
+  }
+
+  // Fungsi untuk parse harga dari format Rupiah ke number
+  function parseRupiah(text) {
+    return parseInt(text.replace(/[^\d]/g, '')) || 0;
+  }
+
+  // Update total per item ketika quantity berubah
+  function updateItemTotal(input) {
+    const row = input.closest('tr');
+    const priceText = row.querySelector('.price').textContent;
+    const price = parseRupiah(priceText);
+    const quantity = parseInt(input.value) || 1;
+    
+    // Validasi quantity
+    if (quantity < 1) {
+      input.value = 1;
+      return;
+    }
+    if (quantity > 100) {
+      input.value = 100;
+      return;
+    }
+    
+    // Update total untuk item ini
+    const total = price * quantity;
+    const totalCell = row.querySelector('.total');
+    totalCell.textContent = 'Rp. ' + formatRupiah(total);
+    
+    // Update grand total
+    updateCartTotals();
+  }
+
+  // Update subtotal dan total keseluruhan
+  function updateCartTotals() {
+    const allTotals = document.querySelectorAll('tbody .total');
+    let grandTotal = 0;
+    
+    allTotals.forEach(totalCell => {
+      const itemTotal = parseRupiah(totalCell.textContent);
+      grandTotal += itemTotal;
+    });
+    
+    // Update subtotal dan total di cart summary
+    const subtotalSpans = document.querySelectorAll('.cart-total .d-flex span:last-child');
+    if (subtotalSpans.length >= 1) {
+      subtotalSpans[0].textContent = 'Rp. ' + formatRupiah(grandTotal);
+    }
+    if (subtotalSpans.length >= 3) {
+      subtotalSpans[2].textContent = 'Rp. ' + formatRupiah(grandTotal);
+    }
+  }
+
+  // Setup event listeners
+  document.addEventListener('DOMContentLoaded', function() {
+    // Event listener untuk semua input quantity
+    const quantityInputs = document.querySelectorAll('input.quantity');
+    
+    quantityInputs.forEach(input => {
+      // Event saat nilai berubah
+      input.addEventListener('change', function() {
+        updateItemTotal(this);
+      });
+      
+      // Event saat mengetik (real-time update)
+      input.addEventListener('input', function() {
+        updateItemTotal(this);
+      });
+    });
+  });
+

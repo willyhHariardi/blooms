@@ -1,0 +1,11 @@
+= render 'shared/admin_header'
+
+main class="main-content"
+  .dashboard-container
+    .booking-header
+      h1.booking-title Create Proudct
+      p.booking-subtitle Add or edit product information for your coffee
+    .booking-form#bookingForm
+      = render 'form',
+              url: backyard_products_path,
+              method: :post

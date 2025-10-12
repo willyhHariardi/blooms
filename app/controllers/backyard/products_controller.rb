@@ -8,18 +8,22 @@ module Backyard
     end
 
     def new
-      @category = Product.new
+
+      @categories = CategoryProduct.all
+      @product = Product.new
     end
 
     def edit
-      @category = Product.find(params[:id])
+      @product = Product.find(params[:id])
+      @categories = CategoryProduct.all
     end
 
     
     def update
-      @category = Product.find(params[:id])
-      if @category.update(room_params)
-        redirect_to backyard_category_products_path
+      @categories = CategoryProduct.all
+      @product = Product.find(params[:id])
+      if @product.update(product_params)
+        redirect_to backyard_products_path
       else
         render 'edit'
       end
@@ -27,18 +31,19 @@ module Backyard
 
 
     def create
-      @category = Product.new(room_params)
-      if @category.save
-        redirect_to backyard_category_products_path
+    @categories = CategoryProduct.all
+      @product = Product.new(product_params)
+      if @product.save
+        redirect_to backyard_products_path
       else
         return render 'new'
       end
     end
 
   
-    def room_params
-      permitted = params.require(:roduct_form)
-            .permit(:title, :category_product_id, :price, :description, :image)
+    def product_params
+      permitted = params.require(:product_form)
+            .permit(:title, :category_product_id, :price, :description, :display_image)
       
     end
   end
