@@ -1,0 +1,11 @@
+= render 'shared/admin_header'
+
+main class="main-content"
+  .dashboard-container
+    .booking-header
+      h1.booking-title Edit Order
+      p.booking-subtitle Update order details and status
+    .booking-form#bookingForm
+      = render 'form',
+              url: backyard_order_path(@order.id),
+              method: :patch

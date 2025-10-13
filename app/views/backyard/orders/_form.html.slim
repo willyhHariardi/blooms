@@ -1,0 +1,39 @@
+= form_for @order, as: "order_form", url: url, method: method, html: { class: 'form-horizontal' } do |f|
+  .form-group
+    label Email Pemesan
+    input.form-control disabled="" type="text" value="#{@order.user.email}" /
+  .form-group
+    label Nama Pemesan
+    input.form-control disabled="" type="text" value="#{@order.deliver_name}" /
+  .form-group
+    label Alamat Pemesan
+    input.form-control disabled="" type="text" value="#{@order.address}" /
+  .form-group
+    label Nomor Telepon Pemesan
+    input.form-control disabled="" type="text" value="#{@order.phone_number}" /
+  .form-group
+    .row
+      .col-md-12.ftco-animate
+        .cart-list
+          table.table
+            thead.thead-primary
+              tr.text-center
+                th Description
+                th Total Price
+            tbody 
+                tr
+                  td.description 
+                    = @order.carts.map { |cart| "#{cart.product.title} (x#{cart.quantity})" }.join(", ")
+                  td.total-price  #{'%.d' % @order.carts.sum { |cart| cart.product.price * cart.quantity }}
+                tr 
+                  td.description 
+                    strong Grand Total
+                  td.total-price 
+                    strong #{'%.d' % @order.carts.sum { |cart| cart.product.price * cart.quantity }}
+  .form-group
+    = f.label :status, 'Status', class: 'form-label'
+    = f.select :status, Order.statuses.keys.map { |status| [status.humanize, status] }, { prompt: "Select a status" }, class: 'form-control'
+ 
+  .form-actions
+    = link_to "Cancel", backyard_orders_path, class: "btn btn-secondary"
+    = f.submit "Submit", class: "btn btn-primary", style: "padding: 10px;"

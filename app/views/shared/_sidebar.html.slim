@@ -12,7 +12,7 @@ aside.sidebar#sidebar
         <path d="M3 14h18M3 14v7a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-7M3 14V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v9M8 21v-6M16 21v-6"/>
       </svg>
       span Dashboard
-    a.nav-link  href=home_dashboard_path
+    a.nav-link   class=("active" if current_page?(backyard_users_path) || current_page?(root_path))  href=backyard_users_path
       svg.nav-link-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
         path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
         circle cx="12" cy="7" r="4"

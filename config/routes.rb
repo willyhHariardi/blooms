@@ -23,9 +23,10 @@ Rails.application.routes.draw do
   end
   resources :products, only: [:index, :show]
   namespace :backyard do
+    resources :users
     resources :category_products
     resources :products
-    resources :orders, only: [:index, :show, :update]
+    resources :orders, only: [:index, :show, :update, :edit, :destroy]
   end
   resources :about, only: [:index, :show]
   resources :checkout, only: [:index, :show]

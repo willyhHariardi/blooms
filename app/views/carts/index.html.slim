@@ -34,7 +34,7 @@ section.ftco-section.ftco-cart
                   
                   td.quantity
                     .input-group.mb-3
-                      input.quantity.form-control.input-number type="text" name="quantity" value="#{cart.quantity}" min="1" max="100" data-cart-id="#{cart.id}"
+                      input.quantity.form-control.input-number type="text" name="quantity" value="#{cart.quantity}" min="1" max="100" data-cart-id="#{cart.id}" onchange="updateItemTotal(this)" oninput="updateItemTotal(this)"
                   
                   td.total 
                     - total_price = cart.product.price * cart.quantity

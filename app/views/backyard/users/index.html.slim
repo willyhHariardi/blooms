@@ -1,0 +1,33 @@
+= render 'shared/admin_header'
+
+main class="main-content"
+  .dashboard-container 
+    .booking-header
+      h1.booking-title List Users
+    .card 
+      .card-header
+        h3.card-title Recent User 
+      .table-responsive
+        table.bookings-table.table-responsive-sm
+          thead
+            tr
+              th ID
+              th Email
+              th
+          tbody
+            - @records.each do |user|
+              tr
+                td.guest-name style="padding-left:10px;"
+                  = user.id
+                td.guest-name style="padding-left:10px;"
+                  = user.email
+                td.booking-actions
+                  = link_to(backyard_user_path(user), class: "btn btn-sm btn-secondary") do
+                    svg.btn-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      circle cx="12" cy="12" r="10"
+                      line x1="12" y1="16" x2="12" y2="12"
+                      line x1="12" y1="8" x2="12.01" y2="8"
+                
+      .card-footer
+        == pagy_bootstrap_nav(@pagy) 
+
