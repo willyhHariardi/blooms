@@ -1920,7 +1920,7 @@ header {
 }
 
 .grid-item:nth-child(even) {
-    background-color: #fff;
+    background-color: #6b5d54;
 }
 
 /* Responsive breakpoints */

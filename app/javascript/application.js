@@ -76,3 +76,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.navbar-toggler');
+  const navCollapse = document.querySelector('.navbar-collapse');
+  const body = document.body;
+  
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function() {
+      navCollapse.classList.toggle('show');
+      body.classList.toggle('menu-open');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.navbar')) {
+        navCollapse.classList.remove('show');
+        body.classList.remove('menu-open');
+      }
+    });
+  }
+});

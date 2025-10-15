@@ -54,3 +54,210 @@
       top: 0;
   }
 }
+
+/* Cara 1: Nonaktifkan overscroll behavior */
+body {
+  overscroll-behavior: none;
+}
+
+/* Atau lebih spesifik untuk vertical/horizontal */
+body {
+  overscroll-behavior-y: none; /* untuk scroll vertical */
+  overscroll-behavior-x: none; /* untuk scroll horizontal */
+}
+
+html {
+  background-color: #d4cdc1;
+  overscroll-behavior: none;
+}
+
+body {
+  background-color: #d4cdc1;
+  overscroll-behavior: none;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+
+/* Contoh tambahan untuk elemen tertentu */
+/* Navbar Fixed dengan Grid Layout */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #d4cdc1 !important;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  align-items: center;
+  padding: 15px 20px;
+  position: relative;
+}
+
+/* Menu Toggle Button (Kiri) */
+.navbar-toggler {
+  grid-column: 1;
+  justify-self: start;
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 1001;
+}
+
+/* Logo (Tengah) - FIXED POSITION */
+.navbar-brand {
+  grid-column: 2;
+  justify-self: center;
+  position: relative;
+  z-index: 999;
+  width: 100px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Cart Icon (Kanan) */
+.show-on-mobile {
+  grid-column: 3;
+  justify-self: end;
+  z-index: 1001;
+  position: relative;
+}
+
+/* Dropdown Menu */
+.navbar-collapse {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #d4cdc1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.navbar-collapse.show {
+  max-height: 500px;
+}
+
+/* Menu Items */
+.navbar-nav {
+  flex-direction: column;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  color: #6b5d54 !important;
+  padding: 12px 40px !important;
+  display: block;
+  font-size: 16px;
+  transition: background 0.1s;
+}
+
+.nav-link:hover {
+  background: rgba(107, 93, 84, 0.1);
+}
+
+/* Prevent body scroll when menu open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Add padding to body for fixed navbar */
+body {
+  padding-top: 80px;
+}
+
+/* Cart badge styling */
+.bag, .bag1 {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #c9a961;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.icon-shopping_cart {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Desktop view */
+@media (min-width: 992px) {
+  .navbar-toggler,
+  .show-on-mobile {
+    display: none;
+  }
+  
+  .navbar-collapse {
+    position: static;
+    max-height: none;
+    box-shadow: none;
+  }
+  
+  .navbar-nav {
+    flex-direction: row;
+    padding: 0;
+  }
+  
+  .nav-link {
+    padding: 0 20px !important;
+  }
+  
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navbar-brand {
+    position: relative;
+  }
+
+  .navbar-nav .nav-item.cart .bag {
+    position: absolute !important;
+    top: -12px;
+    left: auto !important;
+    bottom: auto !important;
+    transform: translate(0, 0) !important;
+    margin: 0 !important;
+  }
+}
+
+/* Mobile specific */
+@media (max-width: 991px) {
+  .hide-on-mobile {
+    display: none;
+  }
+  
+  body {
+    padding-top: 70px;
+  }
+  
+  .navbar .container {
+    padding: 12px 15px;
+  }
+}
+
+
+
+

@@ -1,12 +1,11 @@
-nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light id="ftco-navbar"
+nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.ftco-navbar-light id="ftco-navbar" style="background: #d4cdc1 !important"
   .container
-    button.navbar-toggler type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation"
-      span.oi.oi-menu
+    button.navbar-toggler type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" style="border-color: transparent; color: transparent; position: absolute;"
+      span.oi.oi-menu  style="color: black"
 
-    a.navbar-brand href=root_path
-      | BLOOM
-      small coffee &amp; Eatery
-    span.icon.icon-shopping_cart.show-on-mobile
+    a.navbar-brand.img href=root_path style="background-image: url(images/logo-rsb.png); width:100px; "
+
+    span.icon.icon-shopping_cart.show-on-mobile style="color: black"
       -if @cart_count.to_i > 0
         span.bag1.d-flex.justify-content-center.align-items-center
           small 
@@ -18,9 +17,9 @@ nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light id
             | Shop
         li.nav-item
           a.nav-link.pl-5 href="about.html" About
-        li.nav-item
-            a.nav-link.pl-5 href=order_index_path 
-              | Order 
+        / li.nav-item
+        /     a.nav-link.pl-5 href=order_index_path 
+        /       | History Orders 
         -  if user_signed_in?
           li.nav-item.cart.hide-on-mobile
             a.nav-link href=carts_path
@@ -29,10 +28,25 @@ nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light id
                 span.bag.d-flex.justify-content-center.align-items-center
                   small 
                     = @cart_count || 0
-          li.nav-item
-            a.nav-link.pl-5 style="color: white; cursor: pointer;" id="userDropdownToggle"
-              = button_to destroy_user_session_path, method: :delete, class: "dropdown-item logout", style:"padding:0px; color: wheat;" do
-                | Logout
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                <!-- Head circle -->
+                <circle cx="12" cy="8" r="4"/>
+                <!-- Body/shoulders -->
+                <path d="M20 21c0-3.866-3.582-7-8-7s-8 3.134-8 7"/>
+              </svg>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown04"style="background: #d4cdc1 !important;">
+              a.nav-link.pl-5 href=order_index_path 
+                | History  
+              a.nav-link.pl-5 style="color: white; cursor: pointer;" id="userDropdownToggle"
+                = button_to destroy_user_session_path, method: :delete, class: "dropdown-item logout", style:"padding:0px; color: wheat; background: #d4cdc1 !important;" do
+                  | Logout
+              
+            </div>
+          </li>
+          
         - else
           li.nav-item
             a.nav-link.pl-5 href=new_user_session_path
