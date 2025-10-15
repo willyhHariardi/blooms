@@ -13,7 +13,7 @@ section.ftco-section.ftco-cart
                 th Total Price
                 th Status
                 th 
-            tbody style="color: white;"
+            tbody 
               - @orders.each do |order|
                 tr.text-center
                   td.order-id= order.id

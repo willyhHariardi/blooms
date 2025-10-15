@@ -168,9 +168,7 @@ body {
   transition: background 0.1s;
 }
 
-.nav-link:hover {
-  background: rgba(107, 93, 84, 0.1);
-}
+
 
 /* Prevent body scroll when menu open */
 body.menu-open {
