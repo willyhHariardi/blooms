@@ -3,10 +3,10 @@
 main class="main-content"
   .dashboard-container 
     .booking-header
-      h1.booking-title List Product Categories
+      h1.booking-title List Products
     .card 
       .card-header
-        h3.card-title Recent Categories 
+        h3.card-title Recent Products 
         a.btn.btn-primary href=new_backyard_product_path style="padding:10px;"
           | Add New
       .table-responsive
@@ -16,7 +16,6 @@ main class="main-content"
               th ID
               th Title
               th Display Image
-              th Price
               th
           tbody
             - @records.each do |product|
@@ -27,8 +26,6 @@ main class="main-content"
                   = product.title
                 td.guest-name style="padding-left:10px;"
                   = image_tag url_for(product.display_image_url), height: '50'
-                td.guest-name style="padding-left:10px;"
-                  = "Rp. #{number_with_precision(product.price, precision: 0, delimiter: '.', separator: ',')}"
                 td.booking-actions
                   = link_to(edit_backyard_product_path(product), class: "btn btn-sm btn-secondary") do
                     svg.btn-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

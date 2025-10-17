@@ -256,6 +256,57 @@ body {
   }
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main,
+.main-content,
+.dashboard-container {
+  flex: 1;
+}
+
+footer {
+  margin-top: auto;
+}
+
+
+.size-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.size-radio {
+  display: none;
+}
+
+.size-label {
+  border: 2px solid #ddd;
+  padding: 15px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.size-radio:checked + .size-label {
+  border-color: #c49b63;
+  background: #f8f5f0;
+}
+
+.size-weight {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.size-price {
+  color: #666;
+  font-size: 14px;
+}
 
 
 

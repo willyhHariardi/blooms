@@ -12,11 +12,56 @@
         class: "form-control file-validation col-md-6",
         data: { max_file_size: 5.megabytes }
   .form-group
-    = f.label :price, 'Harga', class: 'form-label'
-    = f.number_field :price, step: 0.01, min: 0, class: " form-control " , placeholder: '0.00', style: 'border: 1px solid #e4e7ea;'
-  .form-group
     = f.label :description, 'Description', class: 'form-label'
     = f.text_area :description, placeholder: "Enter your article content here...", class: "form-control"
+  .table-responsive
+    table.bookings-table
+      thead
+        tr
+          th Name
+          th Price
+          th action
+      tbody#table_transaction 
+        = f.fields_for :sub_products do |pi|
+          = pi.hidden_field :_destroy
+          .
+          tr index='#{pi.index }'
+            td
+              = pi.text_field :name, class: 'form-control', style:"padding: 0.75rem;", onkeyup:"changeValue(event)"
+            td
+              = pi.number_field :price, step: 0.01, min: 0, class: " form-control " , placeholder: '0.00', style: 'padding: 0.75rem;'
+            td 
+              / a.btn.btn-secondary.la-trash-o  id="delete-0" 
+              /   | delete
+    div  style="padding: 0.75rem;"
+      a.btn.btn-secondary.add-item onclick="addCustomField()"
+        | Add Sub Product
+
   .form-actions
     = link_to "Cancel", backyard_products_path, class: "btn btn-secondary"
     = f.submit "Submit", class: "btn btn-primary", style: "padding: 10px;"
+
+javascript: 
+  function addCustomField(event) {
+    setData();
+  };
+
+  function setData() {
+    var optionItems = "";
+    var d1 = document.getElementById('table_transaction');
+    var index = $(d1.rows[d1.rows.length - 1]).attr("index");
+    var next_index = Number(index) + 1;
+    inputHtml_1 =
+      '<tr index="'+ next_index +'" >\
+    <td><input class="form-control" type="text" name="product_form[sub_products_attributes]['+ next_index +'][name]"  id="product_form_sub_products_attributes_'+next_index+'_name"></td>\
+    <td><input class="form-control" type="number" step="0.01" min="0" name="product_form[sub_products_attributes]['+ next_index +'][price]"  id="product_form_sub_products_attributes_'+next_index+'_price"></td>\
+    <td> <a class="btn btn btn-secondary la-trash-o" id="delete-'+ next_index +'">delete</a></td>\
+    </tr>';
+
+    d1.rows[d1.rows.length - 1].insertAdjacentHTML('afterend', inputHtml_1);
+  }
+
+  $(document).ready(function(){
+    $(document).on('click', '.add_item', addCustomField);
+  });
+    

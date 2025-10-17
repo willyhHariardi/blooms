@@ -43,6 +43,7 @@ gem 'prawn-print'
 gem 'prawn-table'
 gem 'wicked_pdf', git: 'https://bitbucket.org/sequisinnovationlab/wicked_pdf' # html to pdf converter
 gem 'wkhtmltopdf-binary'
+gem 'google_sign_in'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

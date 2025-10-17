@@ -3,13 +3,14 @@ nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.ftco-navbar-light id="ftco-n
     button.navbar-toggler type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" style="border-color: transparent; color: transparent; position: absolute;"
       span.oi.oi-menu  style="color: black"
 
-    a.navbar-brand.img href=root_path style="background-image: url(images/logo-rsb.png); width:100px; "
+    a.navbar-brand.img href=root_path style="background-image: url(#{image_path('logo-rsb.png')}); width:100px; "
 
-    span.icon.icon-shopping_cart.show-on-mobile style="color: black"
-      -if @cart_count.to_i > 0
-        span.bag1.d-flex.justify-content-center.align-items-center
-          small 
-            = @cart_count || 0
+    -  if user_signed_in? && !admin_signed_in?
+      span.icon.icon-shopping_cart.show-on-mobile style="color: black"
+        -if @cart_count.to_i > 0
+          span.bag1.d-flex.justify-content-center.align-items-center
+            small 
+              = @cart_count || 0
     .collapse.navbar-collapse id="ftco-nav"
       ul.navbar-nav.ml-auto
         li.nav-item
@@ -20,7 +21,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.ftco-navbar-light id="ftco-n
         / li.nav-item
         /     a.nav-link.pl-5 href=order_index_path 
         /       | History Orders 
-        -  if user_signed_in?
+        -  if user_signed_in? && !admin_signed_in?
           li.nav-item.cart.hide-on-mobile
             a.nav-link href=carts_path
               span.icon.icon-shopping_cart
@@ -49,7 +50,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.ftco-navbar-light id="ftco-n
           
         - else
           li.nav-item
-            a.nav-link.pl-5 href=new_user_session_path
-              | Log in
+            a.nav-link.pl-5 href=new_user_session_path 
+              <i class="fa-solid fa-right-to-bracket"></i>
               
         

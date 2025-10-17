@@ -11,11 +11,13 @@ module Backyard
 
       @categories = CategoryProduct.all
       @product = Product.new
+      @product.sub_products.build if @product.sub_products.empty?
     end
 
     def edit
       @product = Product.find(params[:id])
       @categories = CategoryProduct.all
+      @product.sub_products.build if @product.sub_products.empty?
     end
 
     
@@ -43,7 +45,7 @@ module Backyard
   
     def product_params
       permitted = params.require(:product_form)
-            .permit(:title, :category_product_id, :price, :description, :display_image)
+            .permit(:title, :category_product_id, :description, :display_image,  sub_products_attributes: [:id, :name, :price, :_destroy])
       
     end
   end

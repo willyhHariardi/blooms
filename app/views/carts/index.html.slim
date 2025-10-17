@@ -1,7 +1,7 @@
 = render 'shared/header'
 section.ftco-section.ftco-cart
-  .container
-    .row
+  .container style="background: #e7e3dd"
+    .row 
       .col-md-12.ftco-animate
         .cart-list
           table.table
@@ -14,33 +14,42 @@ section.ftco-section.ftco-cart
                 th Quantity
                 th Total
             tbody
-              - @cart_items.each do |cart|
-                tr.text-center
-                  td.product-remove 
-                    a  onclick="setupCartRemove(#{cart.id})"
-                      span.icon-close
-                  
-                  td.image-prod
-                    .img style="background-image: url(#{url_for(cart.product.display_image_url)});"
-                  
-                  td.product-name
-                    h3 
-                      = cart.product.title
-                  
-                  td.price 
-                    - formatted_price = number_with_precision(cart.product.price, precision: 0, delimiter: '.', separator: ',')
-                    | Rp. 
-                    = formatted_price
-                  
-                  td.quantity
-                    .input-group.mb-3
-                      input.quantity.form-control.input-number type="text" name="quantity" value="#{cart.quantity}" min="1" max="100" data-cart-id="#{cart.id}" onchange="updateItemTotal(this)" oninput="updateItemTotal(this)"
-                  
-                  td.total 
-                    - total_price = cart.product.price * cart.quantity
-                    - formatted_total_price = number_with_precision(total_price, precision: 0, delimiter: '.', separator: ',')
-                    | Rp. 
-                    = formatted_total_price
+              - if @cart_items.length == 0
+                tr
+                  td colspan="6" style="text-align: center; padding: 50px 20px;"
+                    .empty-orders
+                      svg style="width: 64px; height: 64px; margin: 0 auto 20px; display: block; color: #ccc;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      p style="margin: 0; font-size: 18px; color: #666; font-weight: 500;" Tidak ada history pemesanan
+                      p style="margin: 10px 0 0 0; font-size: 14px; color: #999;" Belum ada pesanan yang masuk
+              - else
+                - @cart_items.each do |cart|
+                  tr.text-center
+                    td.product-remove 
+                      a  onclick="setupCartRemove(#{cart.id})"
+                        span.icon-close
+                    
+                    td.image-prod
+                      .img style="background-image: url(#{url_for(cart.product.display_image_url)});"
+                    
+                    td.product-name
+                      h3 
+                        = cart.product.title
+                    
+                    td.price 
+                      - formatted_price = number_with_precision(cart.product.price, precision: 0, delimiter: '.', separator: ',')
+                      | Rp. 
+                      = formatted_price
+                    
+                    td.quantity
+                      .input-group.mb-3
+                        input.quantity.form-control.input-number type="text" name="quantity" value="#{cart.quantity}" min="1" max="100" data-cart-id="#{cart.id}" onchange="updateItemTotal(this)" oninput="updateItemTotal(this)"
+                    
+                    td.total 
+                      - total_price = cart.product.price * cart.quantity
+                      - formatted_total_price = number_with_precision(total_price, precision: 0, delimiter: '.', separator: ',')
+                      | Rp. 
+                      = formatted_total_price
     .row.justify-content-end
       .col.col-lg-12.col-md-6.mt-5.cart-wrap.ftco-animate
         .cart-total.mb-3
@@ -61,6 +70,10 @@ section.ftco-section.ftco-cart
               - formatted_total = number_with_precision(@total_price, precision: 0, delimiter: '.', separator: ',')
               | Rp. 
               = formatted_total
+          .alert.alert-success style="margin-top: 15px; padding: 10px 15px; background-color: #d4edda; border-color: #c3e6cb; border-radius: 5px;"
+            span style="color: #155724; font-size: 14px; vertical-align: middle;"
+              strong GRATIS Ongkir 
+              | untuk wilayah Jabodetabek!
     = form_with url: checkout_carts_path, method: :post, local: false, id: 'checkout-form' do |f| 
       .row 
         .col-md-12.ftco-animate
@@ -70,17 +83,17 @@ section.ftco-section.ftco-cart
               .col-md-12
                 .form-group
                   label for="customer_name" Nama Pemesan *
-                  = f.text_field :customer_name, id: 'nama-pemesan', class: 'form-control', placeholder: '', required: true, style: 'text-align: left;'
+                  = f.text_field :customer_name, id: 'nama-pemesan', class: 'form-control', placeholder: '', required: true, style: 'text-align: left; background: #f2e9e2 !important;'
               .w-100
               .col-md-12
                 .form-group
                   label for="customer_address" Alamat Lengkap *
-                  = f.text_area :customer_address, id: 'alamat', class: 'form-control', rows: 3, required: true, style: 'text-align: left;'
+                  = f.text_area :customer_address, id: 'alamat', class: 'form-control', rows: 3, required: true, style: 'text-align: left; background: #f2e9e2 !important;'
               .w-100
               .col-md-12
                 .form-group
                   label for="customer_phone" Phone *
-                  = f.text_field :customer_phone, id: 'phone', class: 'form-control', placeholder: '', required: true, style: 'text-align: left;'
+                  = f.text_field :customer_phone, id: 'phone', class: 'form-control', placeholder: '', required: true, style: 'text-align: left; background: #f2e9e2 !important;'
               
               = f.hidden_field :total_price, id: 'hidden-total-price', value: @total_price
               
