@@ -2,7 +2,7 @@
 section.ftco-section.ftco-cart
   .container style="background: #e7e3dd"
     .row 
-      .col-md-12.ftco-animate
+      .col-md-12.ftco-animate style="padding: 0;"
         .cart-list
           table.table
             thead.thead-primary
@@ -30,23 +30,23 @@ section.ftco-section.ftco-cart
                         span.icon-close
                     
                     td.image-prod
-                      .img style="background-image: url(#{url_for(cart.product.display_image_url)});"
+                      .img style="background-image: url(#{url_for(cart.sub_product.product.display_image_url)});"
                     
                     td.product-name
                       h3 
-                        = cart.product.title
+                        = cart.sub_product.product.title + ' ' + cart.sub_product.name
                     
                     td.price 
-                      - formatted_price = number_with_precision(cart.product.price, precision: 0, delimiter: '.', separator: ',')
+                      - formatted_price = number_with_precision(cart.sub_product.price, precision: 0, delimiter: '.', separator: ',')
                       | Rp. 
                       = formatted_price
                     
                     td.quantity
                       .input-group.mb-3
-                        input.quantity.form-control.input-number type="text" name="quantity" value="#{cart.quantity}" min="1" max="100" data-cart-id="#{cart.id}" onchange="updateItemTotal(this)" oninput="updateItemTotal(this)"
+                        input.quantity.form-control.input-number type="text" name="quantity" value="#{cart.quantity}" min="1" max="100" data-cart-id="#{cart.id}" onchange="updateItemTotal(this)" oninput="updateItemTotal(this)" style="background: #f2e9e2 !important;"
                     
                     td.total 
-                      - total_price = cart.product.price * cart.quantity
+                      - total_price = cart.sub_product.price * cart.quantity
                       - formatted_total_price = number_with_precision(total_price, precision: 0, delimiter: '.', separator: ',')
                       | Rp. 
                       = formatted_total_price
@@ -55,18 +55,18 @@ section.ftco-section.ftco-cart
         .cart-total.mb-3
           h3 Totals
           p.d-flex
-            span Subtotal
-            span 
+            span style="color: black;" Subtotal
+            span style="color: black;" 
               - formatted_total = number_with_precision(@total_price, precision: 0, delimiter: '.', separator: ',')
               | Rp. 
               = formatted_total
           p.d-flex
-            span Discount
-            span 0
+            span style="color: black;"  Discount
+            span style="color: black;"  0
           hr
           p.d-flex.total-price
-            span Total
-            span 
+            span style="color: black;"  Total 
+            span style="color: black;" 
               - formatted_total = number_with_precision(@total_price, precision: 0, delimiter: '.', separator: ',')
               | Rp. 
               = formatted_total

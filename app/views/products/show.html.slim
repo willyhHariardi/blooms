@@ -17,6 +17,7 @@ section.ftco-section style="background: #f2e9e2;"
                 input.size-radio type="radio" name="subproduct_id" id="size_#{subproduct.id}" value=subproduct.id
                 label.size-label for="size_#{subproduct.id}"
                   .size-weight = subproduct.name
+                  .size-price = "Rp #{number_with_precision(subproduct.price, precision: 0, delimiter: '.')}"
 
 
         / p.price
@@ -25,7 +26,7 @@ section.ftco-section style="background: #f2e9e2;"
         p 
           = @product.description
         = form_with url: carts_path, method: :post, local: true do |f|
-          = f.hidden_field :product_id, value: @product.id
+          = f.hidden_field :sub_product_id, value: '', id: 'selected_subproduct_id'
           .row.mt-4
             .col-md-6
             .w-100
@@ -45,35 +46,39 @@ section.ftco-section style="background: #f2e9e2;"
 
 javascript:
   $(document).ready(function(){
+    // Update hidden field ketika radio button diklik
+    $('input[name="subproduct_id"]').on('change', function(){
+      $('#selected_subproduct_id').val($(this).val());
+    });
+
+    // Set default value jika ada radio button yang sudah terpilih
+    var selectedSubproduct = $('input[name="subproduct_id"]:checked').val();
+    if(selectedSubproduct) {
+      $('#selected_subproduct_id').val(selectedSubproduct);
+    }
+
+    // Quantity controls
     var quantitiy=0;
-      $('.quantity-right-plus').click(function(e){
-          
-          // Stop acting like a button
-          e.preventDefault();
-          // Get the field name
-          var quantity = parseInt($('#quantity').val());
-          
-          // If is not undefined
-              
-              $('#quantity').val(quantity + 1);
+    $('.quantity-right-plus').click(function(e){
+        e.preventDefault();
+        var quantity = parseInt($('#quantity').val());
+        $('#quantity').val(quantity + 1);
+    });
 
-            
-              // Increment
-          
-      });
+    $('.quantity-left-minus').click(function(e){
+        e.preventDefault();
+        var quantity = parseInt($('#quantity').val());
+        if(quantity>0){
+          $('#quantity').val(quantity - 1);
+        }
+    });
 
-        $('.quantity-left-minus').click(function(e){
-          // Stop acting like a button
-          e.preventDefault();
-          // Get the field name
-          var quantity = parseInt($('#quantity').val());
-          
-          // If is not undefined
-        
-              // Increment
-              if(quantity>0){
-              $('#quantity').val(quantity - 1);
-              }
-      });
-      
+    // Validasi sebelum submit - pastikan ukuran sudah dipilih
+    $('form').on('submit', function(e){
+      if(!$('#selected_subproduct_id').val()){
+        e.preventDefault();
+        alert('Silakan pilih ukuran terlebih dahulu');
+        return false;
+      }
+    });
   });

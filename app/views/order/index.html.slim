@@ -27,10 +27,16 @@ section.ftco-section.ftco-cart
               - @orders.each do |order|
                 tr.text-center
                   td.order-id= order.id
-                  td.description= order.carts.map { |cart| "#{cart.product.title} (x#{cart.quantity})" }.join(", ")
-                  td.total-price  #{'%.d' % order.carts.sum { |cart| cart.product.price * cart.quantity }}
+                  td.description= order.carts.map { |cart| "#{cart.sub_product.product.title} #{cart.sub_product.name} (x#{cart.quantity})" }.join(", ")
+                  td.total-price 
+                     = "Rp #{number_with_precision(order.carts.sum { |cart| cart.sub_product.price * cart.quantity }, precision: 0, delimiter: '.')}"
                   td 
-                    = order.status
+                    - if order.status == "paid"
+                      span.room-status.available
+                        = order.status
+                    - else 
+                      span.room-status.occupied
+                        = order.status
                   td
                     - if order.status == "pending"
                       a.btn.btn-primary href="https://wa.me/6287876550009?text=Hi Bloom, I want ask about my order with Order ID #{order.id}."

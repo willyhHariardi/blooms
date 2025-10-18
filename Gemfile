@@ -35,7 +35,6 @@ gem 'devise'
 gem 'database_cleaner'
 gem 'slim-rails'
 gem 'popper_js', '~> 1.11', '>= 1.11.1'
-gem 'devise'
 gem 'active_storage_validations'
 gem 'select2-rails'
 gem 'prawn-rails'
@@ -44,6 +43,7 @@ gem 'prawn-table'
 gem 'wicked_pdf', git: 'https://bitbucket.org/sequisinnovationlab/wicked_pdf' # html to pdf converter
 gem 'wkhtmltopdf-binary'
 gem 'google_sign_in'
+gem 'google-cloud-storage'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

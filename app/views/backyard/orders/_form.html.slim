@@ -23,13 +23,15 @@
             tbody 
                 tr
                   td.description 
-                    = @order.carts.map { |cart| "#{cart.product.title} (x#{cart.quantity})" }.join(", ")
-                  td.total-price  #{'%.d' % @order.carts.sum { |cart| cart.product.price * cart.quantity }}
+                    = @order.carts.map { |cart| "#{cart.sub_product.product.title} #{cart.sub_product.name} (x#{cart.quantity})" }.join(", ")
+                  td.total-price 
+                    = "#{number_with_precision(@order.carts.sum { |cart| cart.sub_product.price * cart.quantity }, precision: 0, delimiter: '.')}"
                 tr 
                   td.description 
                     strong Grand Total
                   td.total-price 
-                    strong #{'%.d' % @order.carts.sum { |cart| cart.product.price * cart.quantity }}
+                    strong 
+                      = "#{number_with_precision(@order.carts.sum { |cart| cart.sub_product.price * cart.quantity }, precision: 0, delimiter: '.')}"
   .form-group
     = f.label :status, 'Status', class: 'form-label'
     = f.select :status, Order.statuses.keys.map { |status| [status.humanize, status] }, { prompt: "Select a status" }, class: 'form-control'

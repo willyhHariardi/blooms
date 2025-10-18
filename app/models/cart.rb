@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
   belongs_to :user
-  belongs_to :product
+  belongs_to :sub_product
   belongs_to :order
   
   scope :pending_orders, -> { 

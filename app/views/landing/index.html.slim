@@ -128,7 +128,8 @@ section.ftco-section
               /   - formatted_price = number_with_precision(product.price, precision: 0, delimiter: '.', separator: ',')
               /   span Rp. = formatted_price
               p
-                a.btn.btn-primary.btn-outline-primary href="#" Add to Cart
+                a.btn.btn-primary.btn-outline-primary href=product_path(product.id)
+                  | Details
 
 = render 'shared/footer'
 

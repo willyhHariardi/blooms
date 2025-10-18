@@ -4,11 +4,10 @@ class LoginsController < ApplicationController
   end
 
   def create
-    debugger
-     form = GoogleLoginForm.new(flash)
-    if user = authenticate_with_google
-      cookies.signed[:user_id] = user.id
-      redirect_to user
+    form = GoogleLoginForm.new(flash)
+    if form.submit
+      sign_in_and_redirect form.user, event: :authentication
+      # set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
     else
       redirect_to new_session_url, alert: 'authentication_failed'
     end
@@ -19,7 +18,7 @@ class LoginsController < ApplicationController
       id_token =  flash[:google_sign_in]["id_token"]
       identity =  GoogleSignIn::Identity.new(id_token)
 
-      if identity.valid?
+      if identity && identity.user_id.present?
         User.find_by google_id: GoogleSignIn::Identity.new(id_token).user_id
       elsif error = flash[:google_sign_in][:error]
         logger.error "Google authentication error: #{error}"

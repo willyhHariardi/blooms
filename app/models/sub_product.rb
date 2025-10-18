@@ -1,5 +1,5 @@
 class SubProduct < ApplicationRecord
-  has_many :product, dependent: :destroy
+  belongs_to :product, dependent: :destroy
   has_many :carts, dependent: :destroy
   
 end

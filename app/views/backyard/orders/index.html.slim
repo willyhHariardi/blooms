@@ -18,7 +18,7 @@ main class="main-content"
               th Status 
               th
           tbody
-             - if @records.length == 0
+            - if @records.length == 0
               tr
                 td colspan="6" style="text-align: center; padding: 50px 20px;"
                   .empty-orders
@@ -36,7 +36,7 @@ main class="main-content"
                   td.guest-name style="padding-left:10px;"
                     = order.deliver_name
                   td.guest-name style="padding-left:10px;"
-                    = "Rp. #{number_with_precision(order.carts.sum { |cart| cart.product.price * cart.quantity }, precision: 0, delimiter: '.', separator: ',')}"
+                    = "Rp. #{number_with_precision(order.carts.sum { |cart| cart.sub_product.price * cart.quantity }, precision: 0, delimiter: '.', separator: ',')}"
                   td.guest-name style="padding-left:10px;"
                     - if order.status == "paid"
                       span.room-status.available

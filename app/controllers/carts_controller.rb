@@ -1,19 +1,19 @@
 class CartsController < ApplicationController
   def index
-    @cart_items = current_user.carts.draft_orders.includes(:product)
-    @total_price = @cart_items.sum { |cart| cart.product.price * cart.quantity }    
+    @cart_items = current_user.carts.draft_orders.includes(:sub_product)
+    @total_price = @cart_items.sum { |cart| cart.sub_product.price * cart.quantity }    
     
   end
 
    def create
-    @product = Product.find(params[:product_id])
+    @product = SubProduct.find(params[:sub_product_id])
     quantity = params[:quantity].to_i
     
     # Cari atau buat draft order untuk user
     order = current_user.orders.find_or_create_by(status: 'draft')
     
     # Cek apakah produk sudah ada di cart
-    cart_item = order.carts.find_by(product_id: @product.id)
+    cart_item = order.carts.find_by(sub_product_id: @product.id)
     
     if cart_item
       # Jika sudah ada, tambah quantity
@@ -22,7 +22,7 @@ class CartsController < ApplicationController
       # Jika belum ada, buat cart baru
       cart_item = order.carts.create(
         user: current_user,
-        product: @product,
+        sub_product: @product,
         quantity: quantity
       )
     end
@@ -30,7 +30,7 @@ class CartsController < ApplicationController
     if cart_item.persisted?
       redirect_to carts_path, notice: 'Product added to cart successfully!'
     else
-      redirect_to product_path(@product), alert: 'Failed to add product to cart.'
+      redirect_to product_path(@product.product), alert: 'Failed to add product to cart.'
     end
   end
 
