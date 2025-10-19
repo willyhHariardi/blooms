@@ -1,9 +1,9 @@
 = render 'shared/header'
 
 section.ftco-section.ftco-cart
-  .container
+  .container style="background: #e7e3dd"
     .row
-      .col-md-12.ftco-animate
+      .col-md-12.ftco-animate style="padding: 0;"
         .cart-list
           table.table
             thead.thead-primary
@@ -32,11 +32,20 @@ section.ftco-section.ftco-cart
                      = "Rp #{number_with_precision(order.carts.sum { |cart| cart.sub_product.price * cart.quantity }, precision: 0, delimiter: '.')}"
                   td 
                     - if order.status == "paid"
-                      span.room-status.available
-                        = order.status
+                      span.room-status.available style="color:green"
+                        i.fas.fa-check-circle
+                        b<>
+                          = order.status.upcase
+                    - elsif order.status == "cancelled"
+                      span.room-status.available style="color:red"
+                        i.fas.fa-times-circle
+                        b<>
+                          = order.status.upcase
                     - else 
-                      span.room-status.occupied
-                        = order.status
+                      span.room-status.occupied style="color:orange"
+                        i.fas.fa-clock
+                        b<>
+                          = order.status.upcase
                   td
                     - if order.status == "pending"
                       a.btn.btn-primary href="https://wa.me/6287876550009?text=Hi Bloom, I want ask about my order with Order ID #{order.id}."
