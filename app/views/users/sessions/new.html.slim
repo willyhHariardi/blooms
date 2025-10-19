@@ -1,95 +1,78 @@
-doctype html
-html lang="id"
-  head
-    meta charset="UTF-8"
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
-    title Coffee House - Login
-    meta name="description" content="Login ke Coffee House - Tempat kopi terbaik"
-    css:
-      body {
-        padding-top: 0px;
-      }
-
-      .container {
-        display: flex;
-        min-height: 100vh;
-        max-width: 110% !important;
-        padding: 0px;
-      }
-
-  body
-    .container
-      / Left Side - Image
-      .image-side 
-        .overlay
-          .welcome-text style="color:white;"
-            h1 style="color:white;"
-              | Selamat Datang 
-            p style="font-size: 18px; line-height: 1.75rem;" 
-              | Your perfect cup of coffee awaits
-
-      / Right Side - Login Form
-      .form-side
-        .form-container
-          / Logo/Brand
-          .brand
-            .row
-              a.navbar-brand.img href=root_path style="background-image: url(#{image_path('logo-rsb.png')}); "
-          
-          - if flash[:notice] || flash[:alert]
-            .flash-messages
-              - if flash[:notice]
-                .alert.alert-notice= flash[:notice]
-              - if flash[:alert]
-                .alert.alert-error= flash[:alert]
-
-          / Login Form
-          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-            .form-group
-              = f.label :email
-              = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email@anda.com"
-
-            .form-group
-              = f.label :password
-              = f.password_field :password, autocomplete: "current-password", placeholder: "Enter your password"
-
-            / Remember Me & Forgot Password
-            .form-options
-              .remember-me
-                / input type="checkbox" id="remember" name="remember"
-                / label for="remember" Ingat saya
-              / a.forgot-password href="#" Lupa password?
-
-            / Submit Button
-            = f.submit "Masuk", class: "btn-login"
-
-          / Divider
-          .divider
-            span ATAU
-
-          / Sign Up Link
-          .signup-link
-            .google-signin-container
-              = google_sign_in_button proceed_to: create_login_path do
-                svg width="20" height="20" viewBox="0 0 48 48" style="flex-shrink: 0;"
-                  path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
-                  path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
-                  path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
-                  path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
-                | Sign in with Google
+= render 'shared/header'
 
 
-          / Additional Info
-          p.terms
-            | Dengan masuk, Anda menyetujui Syarat Layanan dan Kebijakan Privasi kami
+.container style=" display: flex; min-height: 100vh; max-width: 110% !important;padding: 0px;"
+  / Left Side - Image
+  .image-side 
+    .overlay
+      .welcome-text style="color:white;"
+        h1 style="color:white;"
+          | Selamat Datang 
+        p style="font-size: 18px; line-height: 1.75rem;" 
+          | Your perfect cup of coffee awaits
 
-    javascript:
-      function handleLogin(event) {
-        event.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const remember = document.getElementById('remember').checked;
-        
-        console.log('Login attempt:', { email, password, remember });
-        alert('Login berhasil! (Ini hanya demo)');
-      }
+  / Right Side - Login Form
+  .form-side
+    .form-container
+      / Logo/Brand
+      .brand
+        .row
+          a.navbar-brand.img href=root_path style="background-image: url(#{image_path('logo-rsb.png')}); width: 150px;height: 100px;  background-position: center; background-size: contain; background-repeat: no-repeat; display: block; margin: auto; "
+      
+      - if flash[:notice] || flash[:alert]
+        .flash-messages
+          - if flash[:notice]
+            .alert.alert-notice= flash[:notice]
+          - if flash[:alert]
+            .alert.alert-error= flash[:alert]
+
+      / Login Form
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-group
+          = f.label :email
+          = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email@anda.com"
+
+        .form-group
+          = f.label :password
+          = f.password_field :password, autocomplete: "current-password", placeholder: "Enter your password"
+
+        / Remember Me & Forgot Password
+        .form-options
+          .remember-me
+            / input type="checkbox" id="remember" name="remember"
+            / label for="remember" Ingat saya
+          / a.forgot-password href="#" Lupa password?
+
+        / Submit Button
+        = f.submit "Masuk", class: "btn-login"
+
+      / Divider
+      .divider
+        span ATAU
+
+      / Sign Up Link
+      .signup-link
+        .google-signin-container
+          = google_sign_in_button proceed_to: create_login_path do
+            svg width="20" height="20" viewBox="0 0 48 48" style="flex-shrink: 0;"
+              path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+              path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+              path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+              path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+            | Sign in with Google
+
+
+      / Additional Info
+      p.terms
+        | Dengan masuk, Anda menyetujui Syarat Layanan dan Kebijakan Privasi kami
+
+javascript:
+  function handleLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const remember = document.getElementById('remember').checked;
+    
+    console.log('Login attempt:', { email, password, remember });
+    alert('Login berhasil! (Ini hanya demo)');
+  }

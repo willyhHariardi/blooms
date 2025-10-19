@@ -45,9 +45,16 @@
   .show-on-mobile {
     display: none;
   }
+
+  .owl-carousel.home-slider {
+    height: 985px !important;
+  }
 }
 
 @media (max-width: 991.98px) {
+  .owl-carousel.home-slider {
+    height: 896px !important;
+  }
   .ftco-navbar-light {
       background: #000 !important;
       position: absolute;
@@ -623,6 +630,11 @@ footer {
   .form-side {
     width: 50%;
   }
+
+  .nav-link {
+    margin-top: 5px;
+
+  }
 }
 
 @media (max-width: 640px) {
@@ -656,15 +668,5 @@ footer {
 
 .form-container {
   animation: fadeIn 0.6s ease-out;
-}
-
-.navbar-brand.img {
-  width: 150px;
-  height: 100px; /* sesuaikan tinggi yang diinginkan */
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  display: block;
-  margin: auto;
 }
 

@@ -9301,3 +9301,7 @@ body {
   overscroll-behavior-y: none; /* untuk scroll vertical */
   overscroll-behavior-x: none; /* untuk scroll horizontal */
 }
+
+.owl-dots {
+  display: none;
+}

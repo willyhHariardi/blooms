@@ -1,40 +1,45 @@
 = render 'shared/header'
 
-section.home-slider.owl-carousel
-  .slider-item
+section.home-slider.owl-carousel 
+  .slider-item  style="background-image: url(images/bg_1.jpg);height: 100vh;"
     .overlay
     .container
       .row.slider-text.justify-content-center.align-items-center data-scrollax-parent="true"
         .col-md-8.col-sm-12.text-center.ftco-animate
           / span.subheading Hi, Bloomers !
-          h1.mb-4 Welcome to 
-          p 
-            h1
+          h1.mb-4 style="color: #d4cdc1;"
+            | Welcome to 
+          p  
+            h1 style="color: #d4cdc1;"
               | RUMAH SANGRAI BLOOM
           p.mb-4.mb-md-5 
-            | A roastery in West Jakarta, where every bean blooms into something beautiful.  We roast with purpose — exploring density, solubility, and the art of extraction to bring clarity in every cup, so you get "better cup everyday"
+            | A roastery in West Jakarta, where every bean blooms into something beautiful.  
           p
             a.btn.btn-primary.p-3.px-xl-4.py-xl-3 href=products_path Order Now
-            a.btn.btn-white.btn-outline-white.p-3.px-xl-4.py-xl-3 href=products_path View Product
-  .slider-item
+            a.btn.btn-white.btn-outline-white.p-3.px-xl-4.py-xl-3 href=products_path  style="margin-left: 10px;color: #d4cdc1;"
+              | View Product
+  .slider-item style="background-image: url(images/coffee-hero.jpg);height: 100vh;color: #d4cdc1;"
     .overlay
     .container
       .row.slider-text.justify-content-center.align-items-center data-scrollax-parent="true"
-        .col-md-8.col-sm-12.text-center.ftco-animate
-          span.subheading Welcome
-          h1.mb-4 Amazing Taste & Beautiful Place
+        .col-md-8.col-sm-12.text-center.ftco-animate 
+          h1.mb-4 style="color: #d4cdc1;"
+            | Amazing Taste
           p.mb-4.mb-md-5
-            | A small river named Duden flows by their place and supplies it with the necessary regelialia.
+            |  We roast with purpose — exploring density, solubility, and the art of extraction to bring clarity in every cup, so you get "better cup everyday"
           p
-            a.btn.btn-primary.p-3.px-xl-4.py-xl-3 href="#" Order Now
-            a.btn.btn-white.btn-outline-white.p-3.px-xl-4.py-xl-3 href="#" View Product
+            a.btn.btn-primary.p-3.px-xl-4.py-xl-3 href=new_user_session_path Order Now
+            a.btn.btn-white.btn-outline-white.p-3.px-xl-4.py-xl-3 href=products_path style="margin-left: 10px;color: #d4cdc1;"
+              | View Product
+section class="ftco-intro"
+    
 section.ftco-about.d-md-flex
   .one-half.img style="background-image: url(images/bg-1.jpg);"
   .one-half.ftco-animate
     .overlap
       .heading-section.ftco-animate
-        span.subheading Discover
-        h2.mb-4 Our Story
+        h2.mb-4
+          | Our Story
       div
         p style="color: #d4cdc1;"
           | Bloom Roastery is a roaster located in the western part of Jakarta, focused on quality, flavor, and the optimization of every product—especially coffee
@@ -71,7 +76,6 @@ section.ftco-section
     .row.align-items-center
       .col-md-6.pr-md-5
         .heading-section.text-md-right.ftco-animate
-          span.subheading Discover
           h2.mb-4 Our Product
           p.mb-4
             | Every coffee we sell has gone through sorting and grading processes beforehand, reducing the risk of defects and poor quality in our products. 
@@ -111,7 +115,6 @@ section.ftco-section
   .container
     .row.justify-content-center.mb-5.pb-3
       .col-md-7.heading-section.ftco-animate.text-center
-        span.subheading Discover
         h2.mb-4 Best Coffee Sellers
         p Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
     .row

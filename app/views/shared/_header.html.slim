@@ -11,27 +11,33 @@ nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.ftco-navbar-light id="ftco-n
           span.bag1.d-flex.justify-content-center.align-items-center
             small 
               = @cart_count || 0
+    - else 
+      .show-on-mobile
+        a.button.btn-login href=new_user_session_path  style="padding: 7px;"
+            | LOG IN
     .collapse.navbar-collapse id="ftco-nav"
       ul.navbar-nav.ml-auto
         li.nav-item
-          a.nav-link.pl-5 href=products_path
-            | Shop
+          .
+            a.nav-link.pl-5 href=products_path
+              | Shop
         li.nav-item
-          a.nav-link.pl-5 href=about_index_path
-            | About
+          .
+            a.nav-link.pl-5 href=about_index_path
+              | About
         / li.nav-item
         /     a.nav-link.pl-5 href=order_index_path 
         /       | History Orders 
         -  if user_signed_in? && !admin_signed_in?
           li.nav-item.cart.hide-on-mobile
-            a.nav-link href=carts_path
+            a.nav-link href=carts_path style="margin-top: 9px;"
               span.icon.icon-shopping_cart
               - if @cart_count.to_i > 0
                 span.bag.d-flex.justify-content-center.align-items-center
                   small 
                     = @cart_count || 0
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 7px;">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
                 <!-- Head circle -->
                 <circle cx="12" cy="8" r="4"/>
@@ -51,7 +57,10 @@ nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.ftco-navbar-light id="ftco-n
           
         - else
           li.nav-item
-            a.nav-link.pl-5 href=new_user_session_path 
-              <i class="fa-solid fa-right-to-bracket"></i>
+            .hide-on-mobile
+              a.nav-link.pl-5 href=new_user_session_path style="width:100px;padding: 10px; font-weight:800"
+                b
+                  | LOG IN
+              / <button type="submit" class="btn-login" style="width:100px !important;">LOG IN</button>
               
         
