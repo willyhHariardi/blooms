@@ -34,7 +34,7 @@ gem 'devise'
 
 gem 'database_cleaner'
 gem 'slim-rails'
-gem 'popper_js', '~> 1.11', '>= 1.11.1'
+gem 'popper_js', '~> 2.11'
 gem 'active_storage_validations'
 gem 'select2-rails'
 gem 'prawn-rails'

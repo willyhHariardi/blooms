@@ -322,7 +322,7 @@ GEM
     pg (1.6.2-arm64-darwin)
     pg (1.6.2-x86_64-linux)
     pg (1.6.2-x86_64-linux-musl)
-    popper_js (1.16.1)
+    popper_js (2.11.8)
     pp (0.6.2)
       prettyprint
     prawn (2.5.0)
@@ -591,7 +591,7 @@ DEPENDENCIES
   oj
   pagy
   pg
-  popper_js (~> 1.11, >= 1.11.1)
+  popper_js (~> 2.11)
   prawn-print
   prawn-rails
   prawn-table
