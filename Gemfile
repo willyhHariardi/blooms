@@ -22,7 +22,7 @@ gem 'pg'
 gem 'sprockets-rails'
 
 gem 'dotenv-rails'
-gem 'rspec-rails', '~> 3.8'
+gem 'rspec-rails', '~> 8.0'
 gem 'jquery-rails'
 gem 'oj' # pagy helper
 gem 'pagy' # pagination
